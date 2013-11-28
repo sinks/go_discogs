@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>88</y>
+      <w>96</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Image
+--
+ResourceUrl : string
+Height : int
+Width : int
+Type : string
+Uri150 : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>152</x>
+      <y>432</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ArtistResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>184</x>
+      <y>24</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Resource
+--
+Id : int
+ResourceUrl : string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>16</x>
+      <y>64</y>
+      <w>160</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Client
+--
++ UserAgent : string
+- Cache : *
+--
++ Search(Parameters, ext : *string) : Results, error
++ ArtistReleases(id : int) : ArtistReleases, error
++ Artist(id : int) : Artist, error
++ Release(id : int) : Release, error
++ Master(id : int) : Master, error
++ Label(id : int) : Label, error
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>400</y>
+      <w>96</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Community
+--
+Status : string
+Want : int
+Have : int
+DataQuality : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>368</x>
+      <y>0</y>
+      <w>104</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=0..n
+Members</panel_attributes>
+    <additional_attributes>88;32;24;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>176</y>
+      <w>96</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Video
+--
+Uri : string
+Title : string
+Duration : int
+Description : string
+Embed : bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>304</x>
+      <y>352</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ArtistReleases
+--
+Pagination
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>304</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Labels
+m2=0..n</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>528</x>
+      <y>368</y>
+      <w>112</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Submitter</panel_attributes>
+    <additional_attributes>24;32;96;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>288</x>
+      <y>176</y>
+      <w>96</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Release
+--
+Resource : Resource
+Title : string
+Status : string
+Styles : *string
+Year : int
+FormatQuantity : int
+Genre : *string
+Thumb : string
+MasterId : int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>328</y>
+      <w>96</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Label
+--
+Resource : Resource
+Name : string
+CatalogNumber : string
+EntityType : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>16</x>
+      <y>208</y>
+      <w>96</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Parameters
+--
+Q : string
+Type : string
+Title : string
+ReleaseTitle : string
+Credit : string
+Artist : string
+Anv : string
+Label : string
+Genre : string
+Style : string
+Country : string
+Year : string
+Format : string
+CatalogNumber : string
+Barcode : string
+Track : string
+Submitter : string
+Contributor : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>448</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+ExtraArtists
+m2=0..n</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>624</x>
+      <y>392</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>User
+--
+Username : string
+ResourceUrl : string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>232</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Series
+m2=0..n</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>112</y>
+      <w>40</w>
+      <h>416</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>24;24;24;400</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>272</x>
+      <y>432</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ArtistRelease
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>528</x>
+      <y>408</y>
+      <w>112</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Rating</panel_attributes>
+    <additional_attributes>24;32;96;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>480</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Artists
+m2=0..n</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>528</x>
+      <y>384</y>
+      <w>112</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Contributors
+m2=0..n</panel_attributes>
+    <additional_attributes>24;32;96;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>192</y>
+      <w>64</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;48;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>256</y>
+      <w>96</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Series
+--
+Resource : Resource
+Name : string
+CatalogNumber : string
+EntityType : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>232</x>
+      <y>400</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Pagination
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>160</x>
+      <y>360</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ReleaseResult
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>624</x>
+      <y>432</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Rating
+--
+Count : int
+Average : float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>104</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=0..n
+Images</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>296</x>
+      <y>488</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Track
+--
+Title : string
+Position : string
+Duration : string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>208</x>
+      <y>312</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Master</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>368</x>
+      <y>24</y>
+      <w>104</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Images
+m2=0..n</panel_attributes>
+    <additional_attributes>24;24;48;24;48;72;88;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>152</x>
+      <y>472</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>LabelResult</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>152</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+Videos</panel_attributes>
+    <additional_attributes>72;32;24;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>384</x>
+      <y>376</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Community</panel_attributes>
+    <additional_attributes>24;32;72;32</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>472</y>
+      <w>96</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Artist
+--
+Resource : Resource
+Name : string
+Join : string
+Anv : string
+Tracks : string
+Role : string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>296</x>
+      <y>24</y>
+      <w>96</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Artist
+--
++ Resource : Resource
++ Uri : string
++ Name : string
++ Profile : string
++ ReleaseUrl : string
++ Urls : *string
++ DataQuality : string
++ NameVariations : *int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>152</x>
+      <y>392</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>MasterResult
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>24</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Member
+--
+Resource : Resource
+Name : string
+Active : bool
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>168</x>
+      <y>176</y>
+      <w>104</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>SearchResult
+--
+Pagination : Pagination
+Releases : *ReleaseResult
+Masters : *MasterResult
+Artists : *ArtistResult
+Labels: LabelResult
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
