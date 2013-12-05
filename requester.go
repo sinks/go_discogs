@@ -6,23 +6,27 @@ import (
     "io/ioutil"
 )
 
-type Requester struct  {
+type Requester interface {
+    Get(string, url.Values) ([]byte, error)
+}
+
+type HTTPRequester struct  {
     UserAgent               string
     Client                  *http.Client
     ApiURL                  *url.URL
 }
 
-func NewRequester(userAgent string) *Requester {
-    return &Requester{UserAgent: userAgent,
-                      Client: http.DefaultClient,
-                      ApiURL: &url.URL{Scheme: "http",
-                                      Host: "api.discogs.com",
-                                     },
-                     }
+func NewHTTPRequester(userAgent string) *HTTPRequester {
+    return &HTTPRequester{UserAgent: userAgent,
+                          Client: http.DefaultClient,
+                          ApiURL: &url.URL{Scheme: "http",
+                                           Host: "api.discogs.com",
+                                          },
+                         }
 }
 
 // Resource should 
-func (r *Requester) Get(resource string, param url.Values) ([]byte, error) {
+func (r *HTTPRequester) Get(resource string, param url.Values) ([]byte, error) {
 
     // Create url
     rURL := r.ApiURL.ResolveReference(&url.URL{Path: resource,
@@ -50,6 +54,3 @@ func (r *Requester) Get(resource string, param url.Values) ([]byte, error) {
     return body, nil
 }
 
-func StructToValues(interface{}) url.Values {
-    
-}

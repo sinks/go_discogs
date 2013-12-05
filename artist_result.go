@@ -4,10 +4,14 @@ package go_discogs
 type ArtistResult struct {
     Id                          int                 `json:"id"`
     ResourceURL                 string              `json:"resource_url"`
+    URI                         string              `json:"uri"`
+    ReleasesURL                 string              `json:"releases_url"`
     Name                        string              `json:"name"`
     RealName                    string              `json:"realname"`
-    ReleasesURL                 string              `json:"releases_url"`
+    NameVariations              []string            `json:"namevariations"`
+    Aliases                     []Alias             `json:"aliases"`
     Images                      []Image             `json:"images"`
+    DataQuality                 string              `json:"data_quality"`
 }
 
 
@@ -46,6 +50,13 @@ type ArtistReleasesResult struct {
     Master                      []ArtistMaster      `json:"releases"`
 }
 
+type Alias struct {
+    Id                          int                 `json:"id"`
+    ResourceURL                 string              `json:"resource_url"`
+    Name                        string              `json:"name"`
+}
+
+/*
 func (arr *ArtistReleasesResult) UnmarshalJSON(src []byte) error {
     var m map[string]interface{}
 
@@ -56,3 +67,4 @@ func (arr *ArtistReleasesResult) UnmarshalJSON(src []byte) error {
     // get Release Types
 
 }
+*/

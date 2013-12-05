@@ -45,7 +45,7 @@ type ClientUser struct {
 */
 
 func NewClient(userAgent string) *Client {
-    requester := NewRequester(userAgent)
+    requester := NewHTTPRequester(userAgent)
     return &Client{Search: &SearchDatabase{Requester: requester},
                    Artist: &ArtistDatabase{Requester: requester},
                    Release: &ReleaseDatabase{Requester: requester},

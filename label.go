@@ -1,5 +1,5 @@
 package go_discogs
 
 type LabelDatabase struct {
-    Requester           *Requester
+    Requester           Requester
 }

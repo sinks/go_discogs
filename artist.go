@@ -6,7 +6,7 @@ import (
 )
 
 type ArtistDatabase struct {
-    Requester           *Requester
+    Requester           Requester
 }
 
 const artistPath = "/artists/%d"
@@ -31,9 +31,11 @@ func (ad *ArtistDatabase) Get(id int) (*ArtistResult, error) {
     return &result, nil
 }
 
-func (ad *ArtistDatabase) Releases(id int, pagination PaginationParammeters) {
+/*
+func (ad *ArtistDatabase) Releases(id int, pagination PaginationParameters) {
     // generate url
-    data, err := ad.Requester.Get(fmt.Sprintf(artistReleasePath, id), pagination)
+    data, err := ad.Requester.Get(fmt.Sprintf(artistReleasePath, id),
+                                  StructToValues(pagination))
 
     if err != nil {
         return nil, err
@@ -49,3 +51,4 @@ func (ad *ArtistDatabase) Releases(id int, pagination PaginationParammeters) {
 
     return &result, nil
 }
+*/
