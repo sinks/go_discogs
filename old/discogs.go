@@ -1,5 +1,5 @@
 
-package discogs
+package go_discogs
 
 // Go interface to the discogs api
 // official python client https://github.com/discogs/discogs_client

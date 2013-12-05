@@ -1,4 +1,4 @@
-package discogs
+package go_discogs
 
 import (
     "net/http"
@@ -14,28 +14,7 @@ var (
     searchPath = "/database/search" // api_url /database/search?q=<term1>%20<term2>
 )
 
-// Search parameters
-// http://www.discogs.com/developers/resources/database/search-endpoint.html
-type SearchParameters struct {
-    Q               string      `param:"q"`
-    Type            string      `param:"type"`
-    Title           string      `param:"title"`
-    ReleaseTitle    string      `param:"release_title"`
-    Credit          string      `param:"credit"`
-    Artist          string      `param:"artist"`
-    Anv             string      `param:"anv"`
-    Label           string      `param:"label"`
-    Genre           string      `param:"genre"`
-    Style           string      `param:"style"`
-    Country         string      `param:"country"`
-    Year            string      `param:"year"`
-    Format          string      `param:"format"`
-    CatalogNumber   string      `param:"catno"`
-    Barcode         string      `param:"barcode"`
-    Track           string      `param:"track"`
-    Submitter       string      `param:"submitter"`
-    Contributer     string      `param:"contributer"`
-}
+
 
 type Result struct {
     Pagination      Pagination  `json:"pagination"`

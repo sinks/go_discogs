@@ -1,4 +1,4 @@
-package discogs
+package go_discogs
 
 import (
     "net/http"

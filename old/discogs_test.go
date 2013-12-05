@@ -1,5 +1,5 @@
 
-package discogs
+package go_discogs
 
 import (
     "testing"
