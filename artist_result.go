@@ -11,6 +11,9 @@ type ArtistResult struct {
     NameVariations              []string            `json:"namevariations"`
     Aliases                     []Alias             `json:"aliases"`
     Images                      []Image             `json:"images"`
+    Members                     []Member            `json:"members"`
+    Profile                     string              `json:"profile"`
+    URLs                        []string            `json:"urls"`
     DataQuality                 string              `json:"data_quality"`
 }
 
@@ -54,6 +57,13 @@ type Alias struct {
     Id                          int                 `json:"id"`
     ResourceURL                 string              `json:"resource_url"`
     Name                        string              `json:"name"`
+}
+
+type Member struct {
+    Id                          int                 `json:"id"`
+    ResourceURL                 string              `json:"resource_url"`
+    Name                        string              `json:"name"`
+    Active                      bool                `json:"active"`
 }
 
 /*
