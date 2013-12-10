@@ -4,9 +4,11 @@ package go_discogs
 //       handle adding unknown fields to an Extra field
 
 type Resource struct {
+    Id                          uint64              `json:"id"`
+    ResourceURL                 string              `json:"resource_url"`
 }
 
-type PaginationURLS struct {
+type PaginationURLs struct {
     Last                        string              `json:"last"`
     Next                        string              `json:"next"`
 }
@@ -15,7 +17,7 @@ type Pagination struct {
     PerPage                     int                 `json:"per_page"`
     Items                       int                 `json:"items"`
     Page                        int                 `json:"page"`
-    Urls                        PaginationURLS      `json:"urls"`
+    URLs                        PaginationURLs      `json:"urls"`
     Pages                       int                 `json:"pages"`
 }
 
@@ -26,5 +28,4 @@ type Image struct {
     Width                       int                 `json:"width"`
     Type                        string              `json:"type"`
     URI150                      string              `json:"uri150"`
-
 }

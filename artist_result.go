@@ -1,9 +1,12 @@
 package go_discogs
 
+import (
+    "encoding/json"
+    "github.com/mitchellh/mapstructure"
+)
 
 type ArtistResult struct {
-    Id                          int                 `json:"id"`
-    ResourceURL                 string              `json:"resource_url"`
+    Resource                                        `json:",squash"` // squash from mapstructure
     URI                         string              `json:"uri"`
     ReleasesURL                 string              `json:"releases_url"`
     Name                        string              `json:"name"`
@@ -17,8 +20,14 @@ type ArtistResult struct {
     DataQuality                 string              `json:"data_quality"`
 }
 
+type ArtistReleasesResult struct {
+    Pagination                  Pagination          `json:"pagination"`
+    Releases                    []ArtistRelease     `json:"releases"`
+    Masters                     []ArtistMaster      `json:"releases"`
+}
 
 type ArtistRelease struct {
+    Resource                                        `json:",squash"` // squash from mapstructure
     Status                      string              `json:"status"`
     Thumb                       string              `json:"thumb"`
     Title                       string              `json:"title"`
@@ -27,54 +36,83 @@ type ArtistRelease struct {
     Role                        string              `json:"role"`
     Year                        int                 `json:"year"`
     TrackInfo                   string              `json:"trackinfo"`
-    ResourceURL                 string              `json:"resourceURL"`
     Artist                      string              `json:"artist"`
     Type                        string              `json:"type"`
-    Id                          int                 `json:"id"`
 }
 
 
 type ArtistMaster struct {
+    Resource                                        `json:",squash"` // squash from mapstructure
     Thumb                       string              `json:"thumb"`
     MainRelease                 int                 `json:"main_release"`
     Title                       string              `json:"title"`
     Role                        string              `json:"role"`
     Year                        int                 `json:"year"`
-    ResourceURL                 string              `json:"resourceURL"`
     Artist                      string              `json:"artist"`
     Type                        string              `json:"type"`
-    Id                          int                 `json:"id"`
-
-}
-
-type ArtistReleasesResult struct {
-    Pagination                  Pagination          `json:"pagination"`
-    Releases                    []ArtistRelease     `json:"releases"`
-    Master                      []ArtistMaster      `json:"releases"`
 }
 
 type Alias struct {
-    Id                          int                 `json:"id"`
-    ResourceURL                 string              `json:"resource_url"`
+    Resource                                        `json:",squash"` // squash from mapstructure
     Name                        string              `json:"name"`
 }
 
 type Member struct {
-    Id                          int                 `json:"id"`
-    ResourceURL                 string              `json:"resource_url"`
+    Resource                                        `json:",squash"` // squash from mapstructure
     Name                        string              `json:"name"`
     Active                      bool                `json:"active"`
 }
 
-/*
+
 func (arr *ArtistReleasesResult) UnmarshalJSON(src []byte) error {
     var m map[string]interface{}
 
     json.Unmarshal(src, &m)
-
     // get Master types
-    for m["releases"] 
-    // get Release Types
+    releases := m["releases"]
+    t := releases.([]interface{})
 
+    // Populate Masters and Releases
+    for _, v := range t {
+        switch vv := v.(type) {
+        case map[string]interface{}:
+            if vv["type"] == "master" {
+                var master ArtistMaster
+                var md mapstructure.Metadata
+
+                config := &mapstructure.DecoderConfig{TagName: "json",
+                                                      Result: &master,
+                                                      Metadata: &md}
+                decoder, err := mapstructure.NewDecoder(config)
+                if err != nil {
+                    return err
+                }
+                err = decoder.Decode(vv)
+                arr.Masters = append(arr.Masters, master)
+            }
+            if vv["type"] == "release" {
+                var release ArtistRelease
+                config := &mapstructure.DecoderConfig{TagName: "json",
+                                                      Result: &release}
+                decoder, err := mapstructure.NewDecoder(config)
+                if err != nil {
+                    return err
+                }
+                err = decoder.Decode(vv)
+                arr.Releases = append(arr.Releases, release)
+            }
+        }
+    }
+
+    // Populate pagination
+    pagination := m["pagination"]
+    var page Pagination
+    config := &mapstructure.DecoderConfig{TagName: "json", Result: &page}
+    decoder, _ := mapstructure.NewDecoder(config)
+    decoder.Decode(pagination)
+    arr.Pagination = page
+
+    // get Release Types
+    return nil
 }
-*/
+

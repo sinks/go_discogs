@@ -5,6 +5,7 @@ import (
     "testing"
     "strings"
     "net/url"
+    "encoding/json"
 )
 
 var artist1 = []byte(
@@ -329,5 +330,103 @@ func TestGet(t *testing.T) {
 
     if result.Id != 207958 {
         t.Fatalf("Id: %d", result.Id)
+    }
+}
+
+var ArtistReleases67156 = []byte(`
+{
+"pagination": {
+"per_page": 5,
+"items": 410,
+"page": 1,
+"urls": {
+"last": "http://api.discogs.com/artists/67156/releases?per_page=5&page=82",
+"next": "http://api.discogs.com/artists/67156/releases?per_page=5&page=2"
+},
+"pages": 82
+},
+"releases": [
+{
+"thumb": "http://api.discogs.com/image/R-150-1568350-1365965467-8602.jpeg",
+"artist": "Flaming Lips, The",
+"main_release": 1568350,
+"title": "The Flaming Lips",
+"role": "Main",
+"year": 1984,
+"resource_url": "http://api.discogs.com/masters/114232",
+"type": "master",
+"id": 114232
+},
+{
+"thumb": "http://api.discogs.com/image/R-150-724026-1280542367.jpeg",
+"artist": "Flaming Lips, The",
+"main_release": 724026,
+"title": "Hear It Is",
+"role": "Main",
+"year": 1986,
+"resource_url": "http://api.discogs.com/masters/114228",
+"type": "master",
+"id": 114228
+},
+{
+"thumb": "http://api.discogs.com/image/R-150-1417309-1261044250.jpeg",
+"artist": "Flaming Lips, The",
+"main_release": 1417309,
+"title": "Oh My Gawd!!!...",
+"role": "Main",
+"year": 1987,
+"resource_url": "http://api.discogs.com/masters/114248",
+"type": "master",
+"id": 114248
+},
+{
+"status": "Accepted",
+"thumb": "http://api.discogs.com/image/R-150-2085863-1280566884.jpeg",
+"title": "Untitled",
+"format": "Flexi, 7\", S/Sided, Promo",
+"label": "The Bob Magazine, Eva-Tone Soundsheets",
+"role": "Main",
+"year": 1988,
+"resource_url": "http://api.discogs.com/releases/2085863",
+"artist": "Fleshtones* / Steve Kilbey / Flaming Lips*",
+"type": "release",
+"id": 2085863
+},
+{
+"thumb": "http://api.discogs.com/image/R-150-988293-1181182245.jpeg",
+"artist": "Flaming Lips*",
+"main_release": 988293,
+"title": "Drug Machine",
+"role": "Main",
+"year": 1989,
+"resource_url": "http://api.discogs.com/masters/146472",
+"type": "master",
+"id": 146472
+}
+]
+}
+`)
+
+func TestArtistReleases(t *testing.T) {
+    test := []byte(`{"releases": [{"type": "release", "name": "feels", "id": 45}, {"id": 37, "type": "master", "name": "masterfeels"}]}`)
+    json.Unmarshal(test, &ArtistReleasesResult{})
+
+    var artistRelease ArtistReleasesResult
+    json.Unmarshal(ArtistReleases67156, &artistRelease)
+
+    if artistRelease.Pagination.PerPage != 5 {
+        t.Fatal("Pagination Per Page")
+    }
+    if artistRelease.Pagination.Items != 410 {
+        t.Fatal("Pagination Items")
+    }
+    if artistRelease.Pagination.Page != 1 {
+        t.Fatal("Pagination Page")
+    }
+    if artistRelease.Releases[0].Id != 2085863 {
+        t.Fatalf("Releases Id 0: %d", artistRelease.Releases[0].Id)
+    }
+    if artistRelease.Masters[0].Id != 114232 {
+        t.Fatalf("Masters Id 0: %d", artistRelease.Masters[0].Id)
     }
 }
